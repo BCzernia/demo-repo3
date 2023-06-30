@@ -12,7 +12,7 @@ jobs:
       - name: checkout repo content
         uses: actions/checkout@v3.5.2 # checkout the repository content to github runner
         with:
-          token: ${{ secrets.PAT_TOKEN }}
+          token: ${{ secrets.REPO_TOKEN }}
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -36,5 +36,5 @@ jobs:
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
-          github_token: ${{ secrets.PAT_TOKEN }}
+          github_token: ${{ secrets.REPO_TOKEN }}
           branch: ${{ github.ref_name }}
