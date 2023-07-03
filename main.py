@@ -24,3 +24,4 @@ if __name__ == "__main__":
     print(time)
     print(f'::set-output name=time::{time}')#output variable value to GitHub action
     print(f'"time={time}" >> $GITHUB_OUTPUT')
+    
