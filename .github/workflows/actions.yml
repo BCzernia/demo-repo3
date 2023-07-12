@@ -14,7 +14,8 @@ jobs:
       - name: checkout repo content
         uses: actions/checkout@v3.5.2 # checkout the repository content to github runner
         with:
-          token: ${{ secrets.REPO_TOKEN }}
+          ssh-key: ${{ secrets.KEY }}
+          persist-credentials: true
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -31,12 +32,13 @@ jobs:
       - name: commit files
         run: |
           echo "time: ${{steps.python.outputs.time}}"
+          echo "REPO_TOKEN: ${{ secrets.REPO_TOKEN }}"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
           git diff-index --quiet HEAD || (git commit -a -m "updated logs at ${{steps.python.outputs.time}}" --allow-empty)
       - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
+        uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.REPO_TOKEN }}
+          ssh: true
           branch: ${{ github.ref_name }}
