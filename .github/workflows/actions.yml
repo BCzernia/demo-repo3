@@ -31,6 +31,7 @@ jobs:
       - name: commit files
         run: |
           echo "time: ${{steps.python.outputs.time}}"
+          echo "REPO_TOKEN: ${{ secrets.REPO_TOKEN }}"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
