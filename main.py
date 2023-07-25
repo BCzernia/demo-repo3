@@ -2,6 +2,7 @@ import logging
 import logging.handlers
 import os
 from datetime import datetime
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -24,4 +25,8 @@ if __name__ == "__main__":
     print(time)
     print(f'::set-output name=time::{time}')#output variable value to GitHub action
     print(f'"time={time}" >> $GITHUB_OUTPUT')
-    
+
+    #write file out to be saved as artifact
+    data = {'col 1':['A','B','C'],'col 2': [1, 2, 3]}
+    df = pd.DataFrame(data)
+    df.to_csv('test_artifact.csv')

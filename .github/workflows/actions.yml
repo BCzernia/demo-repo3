@@ -21,6 +21,11 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.9' # install the python version needed
+
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt          
           
       - name: execute py script # run main.py
         run: python main.py
@@ -28,6 +33,13 @@ jobs:
         
       #- name: echo time
       #  run: echo "time: $time"
+
+      - name: Upload Log File as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: csv
+          path: |
+            test_artifact.csv      
           
       - name: commit files
         run: |
