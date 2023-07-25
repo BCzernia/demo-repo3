@@ -28,7 +28,7 @@ jobs:
           pip install -r requirements.txt          
           
       - name: execute py script # run main.py
-        run: python main.py
+        run: python main.py > print_outputs.txt
         id: python
         
       #- name: echo time
@@ -39,7 +39,8 @@ jobs:
         with:
           name: csv
           path: |
-            test_artifact.csv      
+            test_artifact.csv
+            print_outputs.txt 
           
       - name: commit files
         run: |

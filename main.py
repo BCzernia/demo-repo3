@@ -23,8 +23,11 @@ if __name__ == "__main__":
     #print out time
     time = datetime.now().strftime("%m-%d %H:%M:%S")
     print(time)
-    print(f'::set-output name=time::{time}')#output variable value to GitHub action
+    print(f'::set-output name=time::{time}')#output variable value to GitHub action, old method will be deprecated.
     print(f'"time={time}" >> $GITHUB_OUTPUT')
+
+    #print for testing artifacts
+    print('this should show up in an artifact file')
 
     #write file out to be saved as artifact
     data = {'col 1':['A','B','C'],'col 2': [1, 2, 3]}
